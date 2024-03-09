@@ -8,6 +8,8 @@ media
 .vscode
 static/
 media/
+project/local_settings.py
+utils
 
 # Backup files # 
 *.bak 
