@@ -5,7 +5,7 @@
 
         <h2>Contact</h2>
 
-        <form action="{% url "contact:create" %}" method="POST" enctype="multipart/form-data">
+        <form action="{{ form_action }}" method="POST" enctype="multipart/form-data">
 
         {% csrf_token %}
 
@@ -15,9 +15,19 @@
                     <label for="{{ field.id_for_laber }}">{{ field.label }}</label>
                     {{ field }}
                     {{ field.errors }}
+
+                    {% if field.help_text %}
+                        <p class="help-text">{{ field.help_text }}</p>
+                    {% endif %}
+
+                    {% if field.name == 'picture' and field.value.url %}
+                        <img src="{{ field.value.url }}" alt="">
+                    {% endif %}
+
                 </div>
             {% endfor %}
         </div>
+
         {% if form.non_field_errors %}
             <div class="form-content">
                 <div class="form-group">
